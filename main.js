@@ -11,14 +11,14 @@ const app = express()
 const PORT = parseInt(process.env.PORT) || 4000;
 const API_KEY = process.env.GIPHY_API;
 
-// // Create link to angular build directory
-// var distDir = __dirname + "/client/dist/csfmock/";
-// app.use(express.static(distDir));
+// Create link to angular build directory
+var distDir = __dirname + "/client/myreactgiphy/build/";
+app.use(express.static(distDir));
 
 // direct to client side file
-// app.get('/', (req, resp) => {
-//     resp.sendFile('/index.html');
-// })
+app.get('/', (req, resp) => {
+    resp.sendFile('/index.html');
+})
 
 // needed for some security CORS thingy
 app.use(function (req, res, next) {
