@@ -43,12 +43,10 @@ app.get('/api/:q/', async (req, resp) => {
             lang: "en"
     });
     
-    console.log(URL);
-
+    console.log(q);
     try {
         const results = await fetch(URL)
         const data = await results.json();
-        console.log(data.data);
         resp.status(200)
         resp.type('application/json')
         resp.send(data.data);

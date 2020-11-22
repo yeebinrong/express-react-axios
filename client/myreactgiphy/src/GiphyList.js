@@ -4,6 +4,7 @@ import axios from 'axios';
 export default class GiphyList extends React.Component {
     imageArray = [];
     imageURLs = [];
+    q = '';
     state = {
     q: '',
     a: []
@@ -11,24 +12,21 @@ export default class GiphyList extends React.Component {
 
     handleChange = event => {
     this.setState({ q: event.target.value });
+    this.q = event.target.value;
     }
 
     handleSubmit = event => {
     event.preventDefault();
 
-    const q = {
-        q: this.state.q
-    };
-
-    axios.get(`https://myreactgiphy.herokuapp.com/api/q`, { q })
+//
+    axios.get(`https://myreactgiphy.herokuapp.com/api/${this.q}/`)
         .then(res => {
             this.imageArray = res.data;
-            console.log(this.imageArray);
+            this.imageURLs = [];
             this.imageURLs = this.imageArray.map((image) => {
-                return <img src={image.images.fixed_height.url} alt=""/>;
+                return <img key={image.images.fixed_height.url} src={image.images.fixed_height.url} alt=""/>;
             })
             this.setState({a: this.imageURLs});
-            console.log("images url is " + this.imageURLs);
         })
 
     }
