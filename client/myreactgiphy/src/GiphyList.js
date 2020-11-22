@@ -20,7 +20,7 @@ export default class GiphyList extends React.Component {
         q: this.state.q
     };
 
-    axios.get(`http://localhost:4000/api/q`, { q })
+    axios.get(`https://myreactgiphy.herokuapp.com/api/q`, { q })
         .then(res => {
             this.imageArray = res.data;
             console.log(this.imageArray);
